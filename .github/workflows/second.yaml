@@ -1,0 +1,15 @@
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run tests
+        run: echo "Running tests"
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Build application
+        run: echo "Building application"
