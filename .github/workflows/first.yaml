@@ -1,21 +1,21 @@
 
-name: First Workflow
+# name: First Workflow
 
-on:
-  push:
-    branches:
-      - main
+# on:
+#   push:
+#     branches:
+#       - main
 
-jobs:
-  hello:
-    runs-on: ubuntu-latest
+# jobs:
+#   hello:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: Print message
-        run: echo "Hello GitHub Actions"
+#     steps:
+#       - name: Print message
+#         run: echo "Hello GitHub Actions"
 
-      - name: Print current date
-        run: date
+#       - name: Print current date
+#         run: date
 
-      - name: Check Python version
-        run: python3 --version
+#       - name: Check Python version
+#         run: python3 --version
