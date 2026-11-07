@@ -1,0 +1,22 @@
+
+name: Multiple Jobs
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Backend checks
+        run: echo "Checking backend"
+
+  frontend:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Frontend checks
+        run: echo "Checking frontend"
