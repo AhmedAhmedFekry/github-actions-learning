@@ -1,19 +1,24 @@
 
-name: Manual Workflow
+name: Environment Example
 
 on:
   workflow_dispatch:
+    inputs:
+      environment:
+        description: "Choose environment"
+        required: true
+        type: choice
+        options:
+          - staging
+          - production
 
 jobs:
-  hello:
+  show-environment:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Say Hello
-        run: echo "Hello Developer!"
-
-      - name: Show system information
+      - name: Display selected environment
+        env:
+          TARGET_ENV: ${{ inputs.environment }}
         run: |
-          uname -a
-          python3 --version
-          docker --version
+          echo "Selected environment: $TARGET_ENV"
