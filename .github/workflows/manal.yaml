@@ -1,24 +1,35 @@
 
-name: Environment Example
+name: Python Matrix Testing
 
 on:
-  workflow_dispatch:
-    inputs:
-      environment:
-        description: "Choose environment"
-        required: true
-        type: choice
-        options:
-          - staging
-          - production
+  push:
+    branches: [main]
+
+  pull_request:
 
 jobs:
-  show-environment:
+  test:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        python-version:
+          - "3.11"
+          - "3.12"
+          - "3.13"
+
     steps:
-      - name: Display selected environment
-        env:
-          TARGET_ENV: ${{ inputs.environment }}
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
         run: |
-          echo "Selected environment: $TARGET_ENV"
+          python -m pip install -r requirements.txt
+
+      - name: Run tests
+        run: pytest
